@@ -19,7 +19,7 @@ sudo update-rc.d elasticsearch defaults 95 10
 
 #Configure Elasticsearch
 RUN echo "script.disable_dynamic: true" >> /etc/elasticsearch/elasticsearch.yml && \
-echo "network.host: localhost" >> /etc/elasticsearch/elasticsearch.yml && \
+#echo "network.host: localhost" >> /etc/elasticsearch/elasticsearch.yml && \
 sudo service elasticsearch restart && \
 sudo update-rc.d elasticsearch defaults 95 10
 
