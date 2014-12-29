@@ -1,6 +1,10 @@
 From ubuntu
 MAINTAINER s.chabrolles.fr.ibm.com
 
+###########################################################################################
+# elasticsearch
+###########################################################################################
+
 #Install Prerequisites 
 RUN apt-get update && \
 apt-get -y upgrade && \
@@ -22,8 +26,10 @@ sudo update-rc.d elasticsearch defaults 95 10
 # Clean
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/
 
-# Expose the Elasticsearch port
+# Expose the Elasticsearch port and data volume
 EXPOSE 9200
+VOLUME ["/var/lib/elasticsearch"]
 
 # Set the default command to run when starting the container
-CMD ["service elasticsearch start"]
+RUN touch /var/log/elasticsearch/elasticsearch.log
+CMD service elasticsearch start ; tail -f /var/log/elasticsearch/elasticsearch.log
