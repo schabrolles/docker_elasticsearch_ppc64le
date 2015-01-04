@@ -1,0 +1,12 @@
+[Unit]
+Description=Elasticsearch container
+Author=Sebastien Chabrolles
+Requires=docker.service
+
+[Service]
+Restart=on-abort
+ExecStart=/usr/bin/docker start -a elasticsearch
+ExecStop=/usr/bin/docker stop -t 2 elasticsearch
+
+[Install]
+WantedBy=graphical.target
