@@ -33,5 +33,4 @@ EXPOSE 9200
 VOLUME ["/var/lib/elasticsearch"]
 
 # Set the default command to run when starting the container
-RUN touch /var/log/elasticsearch/elasticsearch.log
-CMD service elasticsearch start ; tail -f /var/log/elasticsearch/elasticsearch.log
+CMD service elasticsearch start ; sleep 30 ; tail -f /var/log/elasticsearch/elasticsearch.log
