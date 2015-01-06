@@ -20,6 +20,7 @@ rm -f /tmp/${elasticsearch_version}.deb
 
 #Configure Elasticsearch
 RUN echo "script.disable_dynamic: true" >> /etc/elasticsearch/elasticsearch.yml && \
+perl -pi -e "s/#ES_JAVA_OPTS/ES_JAVA_OPTS=\"-Xss1664k\"/g" /etc/init.d/elasticsearch ; \
 #echo "network.host: localhost" >> /etc/elasticsearch/elasticsearch.yml && \
 #echo "http.cors.enabled: true" >> /etc/elasticsearch/elasticsearch.yml && \
 #echo "http.cors.allow-origin: http://localhost:80" >> /etc/elasticsearch/elasticsearch.yml && \
