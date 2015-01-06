@@ -12,10 +12,11 @@ apt-get install -y wget software-properties-common openjdk-7-jre-headless
 
 
 #Install Elasticsearch
-RUN wget -qO - https://packages.elasticsearch.org/GPG-KEY-elasticsearch | sudo apt-key add - && \
-sudo add-apt-repository "deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main" && \
-sudo apt-get update && sudo apt-get install elasticsearch && \
-sudo update-rc.d elasticsearch defaults 95 10
+ENV elasticsearch_version elasticsearch-1.4.2
+RUN cd /tmp && \ 
+wget https://download.elasticsearch.org/elasticsearch/elasticsearch/${elasticsearch_version}.deb && \
+dpkg -i /tmp/${elasticsearch_version}.deb && \
+rm -f /tmp/${elasticsearch_version}.deb
 
 #Configure Elasticsearch
 RUN echo "script.disable_dynamic: true" >> /etc/elasticsearch/elasticsearch.yml && \
